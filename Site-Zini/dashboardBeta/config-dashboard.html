@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="style-config.css">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
+    <title>Zini: Dashboard-Configurações</title>
+    <script>
+        var down = false;
+        function toggleNotifi() {
+            var box = document.getElementById('box');
+            if (down) {
+                box.style.height = '0px';
+                box.style.opacity = 0;
+                down = false;
+            } else {
+                box.style.height = '540px';
+                box.style.zIndex = '9000';
+                box.style.position = 'absolute'
+                box.style.opacity = 1;
+                down = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" id="check" style="display: none;">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <img style="height: 40px; margin-bottom: 7px;" src="img/icons/gear2.png" alt="">
+                <p style="font-size: 40px;">Configurações</p>
+            </div>
+        </div>
+        <<div class="switch__container">
+            <input id="switch-shadow" class="switch switch--shadow" type="checkbox" onclick="ChangeTheme()" />
+            <label for="switch-shadow"></label>
+    </div>
+    </div>
+    <!-- FIM HEADER -->
+    <!-- MENU FECHADO -->
+    <div class="side-menu">
+        <label class="option" for="check">
+            <img style="height: 25px;" src="img/icons/list.png" alt="">
+        </label>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/monitor.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/gear.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/faq.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/relatorio.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/logout_1.png" alt="">
+        </div>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <!-- MENU ABERTO -->
+    <div class="side-menu_open">
+        <nav>
+            <label class="option" for="check">
+                <img style="height: 25px;" src="img/icons/list.png" alt="">
+                <p>Menu</p>
+            </label>
+            <div class="option">
+                <img style="height: 25px;" src="img/icons/monitor.png" alt="">
+                <p>Computador</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px;" src="img/icons/gear.png" alt="">
+                <p>Opções</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px; margin-left: 15px;" src="img/icons/faq.png" alt="">
+                <p style="margin-left: 14px;">FAQ</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px;" src="img/icons/relatorio.png" alt="">
+                <p>Relatório</p>
+            </div>
+            <div class="option">
+                <img style="height: 30px; margin-left: 23px; " src="img/icons/logout_1.png" alt="">
+                <p style="margin-left: 12px;">Logout</p>
+            </div>
+
+            <div>
+                <img style="height: 45px;margin-left: 28px;margin-top: 300px;"
+                    src="img/icons/Monochrome on Transparent.png" alt="">
+            </div>
+        </nav>
+    </div>
+    <!-- <div class="dashboard-container">
+<center>
+<p style="color: white;font-size: 24pt;margin: 5px;">Configurações</p>
+</center> -->
+    <div class="container-corpo">
+        <h1 class="h1dash" id="h1dash">Altere suas informações<b id="b_usuario2"></b></h1>
+        <div class="flex-box">
+            <div class="box" id="box">
+                <div class="div-foto">
+                    <center>
+                        <h2 style="margin: 0px 0px 0px 0px;"><span style="color: #fcc577;">F</span><span id="conta">oto
+                                de Perfil</span></h2>
+                        <img src="img/icons/pessoa.jpg" class="pessoaheader"><br>
+                        <input type="submit" name="" value="Alterar">
+                    </center>
+                </div>
+
+                <form id="form_alterar" method="post" onsubmit="return alterar()">
+                    <div class="div-esquerda">
+                        <input type="text" name="nome" placeholder="Nome" autocomplete="off" required>
+                        <label>Nome completo</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="email" name="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="div-esquerda">
+                        <input type="cpf" name="cpf" required>
+                        <label>CPF</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="text" name="celular" required>
+                        <label>Celular</label>
+                    </div>
+                    <div class="div-esquerda">
+                        <input type="telefone" name="telefone" required>
+                        <label>Telefone</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="password" name="senha" required>
+                        <label>Senha</label>
+                    </div>
+                </form>
+            </div>
+            <button class="btn-salvar"> <b> SALVAR </b></button>
+        </div>
+    </div>
+
+
+
+
+
+    </div>
+
+
+
+    <script>
+
+        function ChangeTheme(){
+        var check = document.getElementById("switch-shadow");
+
+        if(check.checked){
+            gauge2.querySelector(".side-menu").style.backgroundColor = `rotate(${value2 / 2}turn)`;
+            }else{
+                
+            }
+        }
+
+        // var down = false;
+        // function toggleNotifi() {
+        //     var box = document.getElementById('box');
+        //     if (down) {
+        //         box.style.height = '0px';
+        //         box.style.opacity = 0;
+        //         down = false;
+        //     } else {
+        //         box.style.height = '540px';
+        //         box.style.zIndex = '9000';
+        //         box.style.position = 'absolute'
+        //         box.style.opacity = 1;
+        //         down = true;
+        //     }
+        // }
+
+        // <![CDATA[
+        var ttChatLoaderS = document.createElement('script');
+        document.tomticketChatLoaderScriptVersion = 2;
+        ttChatLoaderS.src = 'https://zini.tomticket.com/scripts-chat/chat.min.js'
+            + '?id=EP52507'
+            + '&account=3360448P03042021042116'
+            + '&autoOpen=0'
+            + '&hideWhenOffline=0'
+            + '&d=zini'
+            + '&ts=' + new Date().getTime()
+            + '&ref=' + encodeURIComponent(document.URL);
+        document.body.appendChild(ttChatLoaderS);
+    //]]>
+    </script>
+
+
+
+
+</body>
+
+</html>

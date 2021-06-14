@@ -1,0 +1,962 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="style_cards.css">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
+    <script src="../public/funcoes.js"></script>
+    <title>Zini: Dashboard</title>
+    <script>
+        var down = false;
+        function toggleNotifi() {
+            var box = document.getElementById('box');
+            if (down) {
+                box.style.height = '0px';
+                box.style.opacity = 0;
+                box.style.visibility = "hidden";
+                down = false;
+                contNotificacao = 0;
+            } else {
+                box.style.height = 'auto';
+                box.style.opacity = 1;
+                box.style.visibility = "visible";
+                down = true;
+                
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" id="check" style="display: none;">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <img style="height: 50px;" src="img/icons/administrator-512.png" alt="">
+                <p>Seja bem vindo, Luan Collyns</p>
+            </div>
+            <div class="search">
+                <div class="notifi-box" id="box">
+                    <h2>Notifications <span id="qntdNotificao"></span></h2>
+                    <div class="notifi-item" >
+                        <img src="img/icons/avatar1.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Eric Viezzer</span>
+                            <p id="notificacaoTexto1"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/icons/avatar2.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Jailson Vitor</span>
+                            <p id="notificacaoTexto2"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/icons/avatar3.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Luan Collyns</span>
+                            <p id="notificacaoTexto3"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/icons/avatar4.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Gabriel Curti</span>
+                            <p id="notificacaoTexto4"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/icons/avatar5.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Guilherme Nascimento</span>
+                            <p id="notificacaoTexto5"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="iconnot" onclick="toggleNotifi()">
+            <img src="img/icons/bell.png" alt=""> <span id="qntdNotificao2">0</span>
+        </div>
+    </div>
+    <!-- FIM HEADER -->
+    <!-- MENU FECHADO -->
+    <div class="side-menu">
+        <label class="option" for="check">
+            <img style="height: 25px;" src="img/icons/list.png" alt="">
+        </label>
+        <div class="option">
+            <a href="index.html"><img style="height: 25px;" src="img/icons/monitor.png" alt=""></a>
+        </div>
+        <div class="option">
+            <a href="config-dashboard.html"> <img style="height: 25px;" src="img/icons/gear.png" alt=""></a>
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/faq.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/relatorio.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/icons/logout_1.png" alt="">
+        </div>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <!-- MENU ABERTO -->
+    <div class="side-menu_open">
+        <nav>
+            <label class="option" for="check">
+                <img style="height: 25px;" src="img/icons/list.png" alt="">
+                <p>Menu</p>
+            </label>
+            <div class="option">
+                <a href="index.html"><img style="height: 25px;" src="img/icons/monitor.png" alt=""></a>
+                <p>Computador</p>
+            </div>
+            <div class="option">
+                <a href="config-dashboard.html"></a><img style="height: 25px;" src="img/icons/gear.png" alt=""></a>
+                <p>Opções</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px; margin-left: 15px;" src="img/icons/faq.png" alt="">
+                <p style="margin-left: 14px;">FAQ</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px;" src="img/icons/relatorio.png" alt="">
+                <p>Relatório</p>
+            </div>
+            <div class="option">
+                <img style="height: 30px; margin-left: 23px; " src="img/icons/logout_1.png" alt="">
+                <p style="margin-left: 12px;">Logout</p>
+            </div>
+
+            <div>
+                <img style="height: 45px;margin-left: 28px;margin-top: 300px;"
+                    src="img/icons/Monochrome on Transparent.png" alt="">
+            </div>
+        </nav>
+    </div>
+    <div class="dashboard-container">
+        <div class="container-corpo">
+            <div class="flex-box">
+                <div class="graficos">
+                    <div class="dashboard-estado-1">
+                        <center>
+                        <h3 style="color: white; margin: 0;">Computador: Lucas </h3>
+                        </center>
+                        <div id="bordas_1" class="div_bordas">
+                            <a href="">
+                                <img id="img_normal" style="display: block;" src="img/icons/homecode.gif" class="pc-img" alt=""></a>
+                                <img id="img_alerta" style="display: none;" src="img/icons/200.gif" class="pc-imgalert" alt="">
+                        </div>
+                        <p style="color: white; float: left;margin-left: 8px;font-size: 11pt;">
+                            id: 55555 <br>
+                            Modelo: Dell G3 <br>
+                            Sistema: Windows 10 <br>
+                            Procesador: intel-i7
+                        </p><br>
+                        <div class="gauge">
+                            <div class="gauge-body">
+                                <div class="gauge-progress1"></div>
+                                <div class="gauge-contain1" id="gaugeContain1"></div>
+                            </div>
+                        
+                                <span style="color: white;font-size: 11pt;margin-left: 10px;">Disco Rigido</span>
+                         
+                        </div>
+                      
+                    </div>
+                    <div class="dashboard-estado-1">
+                        <center>
+                        <h3 style="color: white; margin: 0;">Computador: Guilherme</h3>
+                        </center>
+                        <div id="bordas_2" class="div_bordas">
+                            <a href="">
+                                <img id="img_normal2" style="display: block;" src="img/icons/homecode.gif" class="pc-img" alt=""></a>
+                                <img id="img_alerta2" style="display: none;" src="img/icons/200.gif" class="pc-imgalert" alt="">
+                        </div>
+                        <p style="color: white; float: left;margin-left: 8px;font-size: 11pt;">
+                            id: 55555 <br>
+                            Modelo: Dell G3 <br>
+                            Sistema: Windows 10 <br>
+                            Procesador: intel-i7
+                        </p><br>
+                        <div class="gauge2">
+                            <div class="gauge-body">
+                                <div class="gauge-progress2"></div>
+                                <div class="gauge-contain2" id="gaugeContain2"></div>
+                            </div>
+                        
+                                <span style="color: white;font-size: 11pt;margin-left: 10px;">Disco Rigido</span>
+                         
+                        </div>
+                    </div>
+                    <div class="dashboard-estado-1">
+                        <center>
+                        <h3 style="color: white; margin: 0;">Computador: Luan</h3>
+                        </center>
+                        <div id="bordas_3" class="div_bordas">
+                            <a href="">
+                                <img id="img_normal3" style="display: block;" src="img/icons/homecode.gif" class="pc-img" alt=""></a>
+                                <img id="img_alerta3" style="display: none;" src="img/icons/200.gif" class="pc-imgalert" alt="">
+                        </div>
+                        <p style="color: white; float: left;margin-left: 8px;font-size: 11pt;">
+                            id: 55555 <br>
+                            Modelo: Dell G3 <br>
+                            Sistema: Windows 10 <br>
+                            Procesador: intel-i7
+                        </p><br>
+                        <div class="gauge3">
+                            <div class="gauge-body">
+                                <div class="gauge-progress3"></div>
+                                <div class="gauge-contain3" id="gaugeContain3"></div>
+                            </div>
+                        
+                                <span style="color: white;font-size: 11pt;margin-left: 10px;">Disco Rigido</span>
+                         
+                        </div>
+        
+                    </div>
+                    <div class="dashboard-estado-1">
+                        <center>
+                        <h3 style="color: white; margin: 0;">Computador: Gabriel</h3>
+                        </center>
+                        <div id="bordas_4" class="div_bordas">
+                            <a href="">
+                                <img id="img_normal4" style="display: block;" src="img/icons/homecode.gif" class="pc-img" alt=""></a>
+                                <img id="img_alerta4" style="display: none;" src="img/icons/200.gif" class="pc-imgalert" alt="">
+                        </div>
+                        <p style="color: white; float: left;margin-left: 8px;font-size: 11pt;">
+                            id: 55555 <br>
+                            Modelo: Dell G3 <br>
+                            Sistema: Windows 10 <br>
+                            Procesador: intel-i7
+                        </p><br>
+                        <div class="gauge4">
+                            <div class="gauge-body">
+                                <div class="gauge-progress4"></div>
+                                <div class="gauge-contain4" id="gaugeContain4"></div>
+                            </div>
+                        
+                                <span style="color: white;font-size: 11pt;margin-left: 10px;">Disco Rigido</span>
+                         
+                        </div>
+
+                    </div>
+                    <div class="dashboard-estado-1">
+                        <center>
+                        <h3 style="color: white; margin: 0;">Computador: Jailson</h3>
+                        </center>
+                        <div id="bordas_5" class="div_bordas">
+                            <a href="">
+                                <img id="img_normal5" style="display: block;" src="img/icons/homecode.gif" class="pc-img" alt=""></a>
+                                <img id="img_alerta5" style="display: none;" src="img/icons/200.gif" class="pc-imgalert" alt="">
+                        </div>
+                        <p style="color: white; float: left;margin-left: 8px;font-size: 11pt;">
+                            id: 55555 <br>
+                            Modelo: Dell G3 <br>
+                            Sistema: Windows 10 <br>
+                            Procesador: intel-i7
+                        </p><br>
+                        <div class="gauge5">
+                            <div class="gauge-body">
+                                <div class="gauge-progress5"></div>
+                                <div class="gauge-contain5" id="gaugeContain5"></div>
+                            </div>
+                        
+                                <span style="color: white;font-size: 11pt;margin-left: 10px;">Disco Rigido</span>
+                         
+                        </div>
+
+ 
+                    </div>
+                    <div class="dashboard-estado-1">
+                        <center>
+                        <h3 style="color: white; margin: 0;">Computador: Eric</h3>
+                        </center>
+                        <div id="bordas_6" class="div_bordas">
+                            <a href="">
+                                <img id="img_normal6" style="display: block;" src="img/icons/homecode.gif" class="pc-img" alt=""></a>
+                                <img id="img_alerta6" style="display: none;" src="img/icons/200.gif" class="pc-imgalert" alt="">
+                        </div>
+                        <p style="color: white; float: left;margin-left: 8px;font-size: 11pt;">
+                            id: 55555 <br>
+                            Modelo: Dell G3 <br>
+                            Sistema: Windows 10 <br>
+                            Procesador: intel-i7
+                        </p><br>
+                        <div class="gauge6">
+                            <div class="gauge-body">
+                                <div class="gauge-progress6"></div>
+                                <div class="gauge-contain6" id="gaugeContain6"></div>
+                            </div>
+                        
+                                <span style="color: white;font-size: 11pt;margin-left: 10px;">Disco Rigido</span>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    <script>
+verificar_autenticacao()
+var contConteudo = 1;
+        var contNotificacao = 0;
+
+        // var down = false;
+        // function toggleNotifi() {
+        //     var box = document.getElementById('box');
+        //     if (down) {
+        //         box.style.height = '0px';
+        //         box.style.opacity = 0;
+        //         down = false;
+        //     } else {
+        //         box.style.height = '540px';
+        //         box.style.zIndex = '9000';
+        //         box.style.position = 'absolute'
+        //         box.style.opacity = 1;
+        //         down = true;
+        //     }
+        // }
+
+        // <![CDATA[
+        var ttChatLoaderS = document.createElement('script');
+        document.tomticketChatLoaderScriptVersion = 2;
+        ttChatLoaderS.src = 'https://zini.tomticket.com/scripts-chat/chat.min.js'
+            + '?id=EP52507'
+            + '&account=3360448P03042021042116'
+            + '&autoOpen=0'
+            + '&hideWhenOffline=0'
+            + '&d=zini'
+            + '&ts=' + new Date().getTime()
+            + '&ref=' + encodeURIComponent(document.URL);
+        document.body.appendChild(ttChatLoaderS);
+    //]]>
+    </script>
+
+
+
+<script>
+
+const gaugeElement = document.querySelector(".gauge");
+function setGaugeValue(gauge, value) {
+
+if (value < 0 || value > 1) {
+    return;
+}
+
+gauge.querySelector(".gauge-progress1").style.transform = `rotate(${value / 2}turn)`;
+gauge.querySelector(".gauge-contain1").textContent = `${Math.round(value * 100)}%`;
+// discoValue.innerHTML = `${Math.round(value * 100)}%`;
+result = parseInt(`${Math.round(value * 100)}%`);
+
+
+}
+
+
+setInterval(() => {
+
+setGaugeValue(gaugeElement, Math.random());
+if (result >= 75 && result < 90) {
+  //  discoValue.style.color = "yellow";
+    gaugeContain1.style.color = "yellow";
+    img_normal.style.display = "block";
+    img_alerta.style.display = "none";
+    bordas_1.style.border = "4px solid yellow"
+    contNotificacao++;
+    trocarCor("yellow");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+} else if (result >= 90) {
+   // discoValue.style.color = "red";
+    gaugeContain1.style.color = "red";
+    img_normal.style.display = "none";
+    img_alerta.style.display = "block";
+    bordas_1.style.border = "4px solid red";
+    contNotificacao++;
+    trocarCor("red");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Disco Rígido: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Disco Rígido: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Disco Rígido: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Disco Rígido: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Disco Rígido: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+} else {
+  //  discoValue.style.color = "#009578";
+    gaugeContain1.style.color = "#009578";
+    img_normal.style.display = "block";
+    img_alerta.style.display = "none";
+    bordas_1.style.border = "4px solid #009578"
+    trocarCor("#009578");
+
+
+}
+// console.log(Math.trunc(result))
+
+qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+
+}, 3000);
+function trocarCor(cor) {
+let elements = document.getElementsByClassName('gauge-progress1');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = `${cor}`;
+}
+}
+
+//gauge2
+const gaugeElement2 = document.querySelector(".gauge2");
+function setGaugeValue2(gauge, value) {
+
+if (value < 0 || value > 1) {
+    return;
+}
+
+gauge.querySelector(".gauge-progress2").style.transform = `rotate(${value / 2}turn)`;
+gauge.querySelector(".gauge-contain2").textContent = `${Math.round(value * 100)}%`;
+// discoValue.innerHTML = `${Math.round(value * 100)}%`;
+result2 = parseInt(`${Math.round(value * 100)}%`);
+
+
+}
+
+
+setInterval(() => {
+
+setGaugeValue2(gaugeElement2, Math.random());
+if (result2 >= 75 && result2 < 90) {
+  //  discoValue.style.color = "yellow";
+    gaugeContain2.style.color = "yellow";
+    img_normal2.style.display = "block";
+    img_alerta2.style.display = "none";
+    bordas_2.style.border = "4px solid yellow"
+    contNotificacao++;
+    trocarCor2("yellow");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+} else if (result2 >= 90) {
+   // discoValue.style.color = "red";
+    gaugeContain2.style.color = "red";
+    img_normal2.style.display = "none";
+    img_alerta2.style.display = "block";
+    bordas_2.style.border = "4px solid red"
+    contNotificacao++;
+    trocarCor2("red");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+} else {
+  //  discoValue.style.color = "#009578";
+    gaugeContain2.style.color = "#009578";
+    img_normal2.style.display = "block";
+    img_alerta2.style.display = "none";
+    bordas_2.style.border = "4px solid #009578"
+    trocarCor2("#009578");
+
+
+}
+// console.log(Math.trunc(result))
+
+qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+
+}, 3000);
+function trocarCor2(cor) {
+let elements = document.getElementsByClassName('gauge-progress2');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = `${cor}`;
+}
+}
+//fim gauge2
+
+
+
+//gauge3
+const gaugeElement3 = document.querySelector(".gauge3");
+function setGaugeValue3(gauge, value) {
+
+if (value < 0 || value > 1) {
+    return;
+}
+
+gauge.querySelector(".gauge-progress3").style.transform = `rotate(${value / 2}turn)`;
+gauge.querySelector(".gauge-contain3").textContent = `${Math.round(value * 100)}%`;
+// discoValue.innerHTML = `${Math.round(value * 100)}%`;
+result3 = parseInt(`${Math.round(value * 100)}%`);
+
+
+}
+
+
+setInterval(() => {
+
+setGaugeValue3(gaugeElement3, Math.random());
+if (result3 >= 75 && result3 < 90) {
+  //  discoValue.style.color = "yellow";
+    gaugeContain3.style.color = "yellow";
+    img_normal3.style.display = "block";
+    img_alerta3.style.display = "none";
+    bordas_3.style.border = "4px solid yellow"
+    contNotificacao++;
+    trocarCor3("yellow");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+} else if (result3 >= 90) {
+   // discoValue.style.color = "red";
+   img_normal3.style.display = "none";
+    img_alerta3.style.display = "block";
+    bordas_3.style.border = "4px solid red"
+    gaugeContain3.style.color = "red";
+    contNotificacao++;
+    trocarCor3("red");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+} else {
+  //  discoValue.style.color = "#009578";
+    gaugeContain3.style.color = "#009578";
+    img_normal3.style.display = "block";
+    img_alerta3.style.display = "none";
+    bordas_3.style.border = "4px solid #009578"
+    trocarCor3("#009578");
+
+
+}
+// console.log(Math.trunc(result))
+
+qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+
+}, 3000);
+function trocarCor3(cor) {
+let elements = document.getElementsByClassName('gauge-progress3');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = `${cor}`;
+}
+}
+//fim gauge3
+
+
+//gauge4
+const gaugeElement4 = document.querySelector(".gauge4");
+function setGaugeValue4(gauge, value) {
+
+if (value < 0 || value > 1) {
+    return;
+}
+
+gauge.querySelector(".gauge-progress4").style.transform = `rotate(${value / 2}turn)`;
+gauge.querySelector(".gauge-contain4").textContent = `${Math.round(value * 100)}%`;
+// discoValue.innerHTML = `${Math.round(value * 100)}%`;
+result4 = parseInt(`${Math.round(value * 100)}%`);
+
+
+}
+
+
+setInterval(() => {
+
+setGaugeValue4(gaugeElement4, Math.random());
+if (result4 >= 75 && result4 < 90) {
+  //  discoValue.style.color = "yellow";
+    gaugeContain4.style.color = "yellow";
+    img_normal4.style.display = "block";
+    img_alerta4.style.display = "none";
+    bordas_4.style.border = "4px solid yellow"
+    contNotificacao++;
+    trocarCor4("yellow");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+} else if (result4 >= 90) {
+   // discoValue.style.color = "red";
+    gaugeContain4.style.color = "red";
+    img_normal4.style.display = "none";
+    img_alerta4.style.display = "block";
+    bordas_4.style.border = "4px solid red"
+    contNotificacao++;
+    trocarCor4("red");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+} else {
+  //  discoValue.style.color = "#009578";
+    gaugeContain4.style.color = "#009578";
+    img_normal4.style.display = "block";
+    img_alerta4.style.display = "none";
+    bordas_4.style.border = "4px solid #009578"
+    trocarCor4("#009578");
+
+
+}
+// console.log(Math.trunc(result))
+
+
+qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+}, 3000);
+function trocarCor4(cor) {
+let elements = document.getElementsByClassName('gauge-progress4');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = `${cor}`;
+}
+}
+//fim gauge4
+
+
+
+//gauge5
+const gaugeElement5 = document.querySelector(".gauge5");
+function setGaugeValue5(gauge, value) {
+
+if (value < 0 || value > 1) {
+    return;
+}
+
+gauge.querySelector(".gauge-progress5").style.transform = `rotate(${value / 2}turn)`;
+gauge.querySelector(".gauge-contain5").textContent = `${Math.round(value * 100)}%`;
+// discoValue.innerHTML = `${Math.round(value * 100)}%`;
+result5 = parseInt(`${Math.round(value * 100)}%`);
+
+
+}
+
+
+setInterval(() => {
+
+setGaugeValue5(gaugeElement5, Math.random());
+if (result5 >= 75 && result5 < 90) {
+  //  discoValue.style.color = "yellow";
+    gaugeContain5.style.color = "yellow";
+    img_normal5.style.display = "block";
+    img_alerta5.style.display = "none";
+    bordas_5.style.border = "4px solid yellow"
+    contNotificacao++;
+    trocarCor5("yellow");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+} else if (result5 >= 90) {
+   // discoValue.style.color = "red";
+    gaugeContain5.style.color = "red";
+    img_normal5.style.display = "none";
+    img_alerta5.style.display = "block";
+    bordas_5.style.border = "4px solid red"
+    contNotificacao++;
+    trocarCor5("red");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+} else {
+  //  discoValue.style.color = "#009578";
+    gaugeContain5.style.color = "#009578";
+    img_normal5.style.display = "block";
+    img_alerta5.style.display = "none";
+    bordas_5.style.border = "4px solid #009578"
+    trocarCor5("#009578");
+
+
+}
+// console.log(Math.trunc(result))
+
+qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+
+}, 3000);
+function trocarCor5(cor) {
+let elements = document.getElementsByClassName('gauge-progress5');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = `${cor}`;
+}
+}
+//fim gauge5
+
+
+
+//gauge6
+const gaugeElement6 = document.querySelector(".gauge6");
+function setGaugeValue6(gauge, value) {
+
+if (value < 0 || value > 1) {
+    return;
+}
+
+gauge.querySelector(".gauge-progress6").style.transform = `rotate(${value / 2}turn)`;
+gauge.querySelector(".gauge-contain6").textContent = `${Math.round(value * 100)}%`;
+// discoValue.innerHTML = `${Math.round(value * 100)}%`;
+result6 = parseInt(`${Math.round(value * 100)}%`);
+
+
+}
+
+
+setInterval(() => {
+
+setGaugeValue6(gaugeElement6, Math.random());
+if (result6 >= 75 && result6 < 90) {
+  //  discoValue.style.color = "yellow";
+    gaugeContain6.style.color = "yellow";
+    img_normal6.style.display = "block";
+    img_alerta6.style.display = "none";
+    bordas_6.style.border = "4px solid yellow";
+    contNotificacao++;
+    trocarCor6("yellow");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+} else if (result6 >= 90) {
+   // discoValue.style.color = "red";
+    img_normal6.style.display = "none";
+    img_alerta6.style.display = "block";
+    bordas_6.style.border = "4px solid red"
+    gaugeContain6.style.color = "red";
+    contNotificacao++;
+    trocarCor6("red");
+    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Disco Rígido: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+} else {
+  //  discoValue.style.color = "#009578";
+    gaugeContain6.style.color = "#009578";
+    img_normal6.style.display = "block";
+    img_alerta6.style.display = "none";
+    bordas_6.style.border = "4px solid #009578"
+    trocarCor6("#009578");
+
+
+}
+// console.log(Math.trunc(result))
+
+
+qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+}, 3000);
+function trocarCor6(cor) {
+let elements = document.getElementsByClassName('gauge-progress6');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = `${cor}`;
+}
+}
+//fim gauge6
+
+
+
+
+
+
+
+</script>
+
+
+
+
+    <!-- <script type="text/javascript">-->
+</body>
+
+</html>

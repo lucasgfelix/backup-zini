@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-cadastrar.css">
+    <script type="text/javascript" src="js/api.js"></script>
+    <link href="https://fonts.googleapis.com/css2? family = Montserrat & display = swap" rel="folha de estilo ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="mask/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="mask/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="mask/js/jquery.mask.min.js"></script>	 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <title>Cadastrar</title>
+</head>
+
+<body>
+
+
+    <div class="linha-amarela"></div>
+    <div class="container">
+
+        <div class="header">
+            <a href="index.html"><img class="imgLogo" src="img/Original_on_Transparent2.png" alt="Logo"></a>
+            <a href="login.html"><img class="img-login" src="img/img-login.png"></a>
+            <div class="nav">
+                <ul>
+                    <li class="menu-atual" class="li_menu"><a href="index.html">Pagina Inicial</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="showcase">
+            <div class="box">
+
+                <h2>Cadastrar</h2>
+
+                <form id="form_cadastro" name="formulario" method="post" onsubmit="return cadastrar()">
+                    <div class="div-esquerda">
+                        <input type="text" name="nome" id="nome" required="" autofocus="autofocus">  
+                            
+                        <label>Nome completo</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="text" name="email" name="email" required="">
+                        <label>Email</label>
+                    </div>
+                   
+                    <div class="div-esquerda">
+                        <input type="text" name="cep" required="" id="cep" onblur="pesquisacep(this.value);">
+                        <label>Cep</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="text" name="rua" required="" id="rua">
+                        <label>Rua</label>
+                    </div>
+                    <div class="div-esquerda">
+                        <input type="text" name="bairro" required="" id="bairro">
+                        <label>Bairro</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="text" name="cidade" required="" id="cidade">
+                        <label>Cidade</label>
+                    </div>
+                    <div class="div-esquerda">
+                        <input type="text" id="cpf" name="cpf" required=""> 
+                            
+                        <label>CPF</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="text" name="celular" required="" id="telefone">
+
+                        <label>Celular</label>
+
+                    </div>
+                    <div class="div-esquerda">
+                        <span style="margin-left: 272px;margin-top: 9px;position: absolute;" class="lnr lnr-eye"></span>
+                        <input type="password" name="senha" required="" id="password">
+                        <label>Senha</label>
+                    </div>
+                    <div class="div-direita">
+                        <span style="margin-left: 272px;margin-top: 9px;position: absolute;"  class="lnr lnr-eye" id="olho2"></span>
+                        <input type="password" name="" required="" id="password2">
+                        <label>Confirmar Senha</label>
+                    </div>
+                    <center>
+                        <input type="submit" name="" value="Cadastrar">
+                    </center>
+                    <span><a style="text-decoration: none; color: black; margin-left: 41%;" href="login.html">Já possui
+                            login?</a></span>
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        <div class="footer-content">
+            <h3><span style="color: #fcc577;">Z</span>ini Company</h3>
+            <h4><i>Contat us</i></h4>
+            <br>
+            <p class="fa fa-mail-forward"><b> Email:</b><a href=""> zinicompany@bandtec.com.br</a></p>
+            <p class="fa fa-mobile-phone"><b> Phone:</b> (11) 99999-9999</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="maps">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.286232367227!2d-46.663726685355975!3d-23.5581612673585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2a5270055%3A0x3c7ea4f4c7d51fb6!2sRua%20Haddock%20Lobo%2C%20595%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001414-001!5e0!3m2!1spt-BR!2sbr!4v1614793892728!5m2!1spt-BR!2sbr"
+                    width="600" height="200" style="border-radius:60px; float: left;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2020 Zini. designed by <span>Zini Development</span></p>
+        </div>
+    </footer>
+
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+
+    let btn = document.querySelector('.lnr-eye');
+    btn.addEventListener('click', function() {
+        let input = document.querySelector('#password');
+        if(input.getAttribute('type') == 'password') {
+            input.setAttribute('type', 'text');
+        } else {
+            input.setAttribute('type', 'password');
+        }
+    });
+    
+    
+    
+    
+    let btn2 = document.querySelector('#olho2');
+    btn2.addEventListener('click', function() {
+        let input2 = document.querySelector('#password2');
+        if(input2.getAttribute('type') == 'password') {
+            input2.setAttribute('type', 'text');
+        } else {
+            input2.setAttribute('type', 'password');
+        }
+    });
+    </script>
+    
+<script>
+
+
+    function verificar() {
+        var email = input_email.value;
+        var senha = input_senha.value;
+        var confsenha = input_confsenha.value;
+        var cpf = input_rua.value;
+
+        if (senha.length < 8) {
+            alert("A senha precisa conter 8 caracteres!");
+            senha.innerHTML("");
+
+        } else if (senha.indexOf(confsenha) == -1) {
+            alert("As senhas digitadas não correspondem!");
+            senha.innerHTML("");
+            confsenha.innerHTML("");
+
+        } else if (cpf.length < 11) {
+            alert("CPF invalido!");
+
+        } else {
+            alert("cadastro realizado com sucesso!");
+            window.location.href = "../login.html";
+        }
+
+    };
+
+    function cadastrar() {
+        // aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+
+                window.location.href = 'login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                // finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    // function aguardar() {
+    //     btn_entrar.disabled = true;
+    //     // img_aguarde.style.display='block';
+    //     div_erro.style.display='none';
+    // }
+
+    // function finalizar_aguardar() {
+    //     btn_entrar.disabled = false;
+    //     // img_aguarde.style.display='none';
+    //     div_erro.style.display='block';
+    // }
+
+    function mascara_cpf() {
+        var cpf2 = cpf.value
+        if (cpf2.lenght == 3 || cpf2.lenght == 7) {
+            cpf2.innerHTML += "."
+    } else if (cpf2.lenght == 11) {
+        cpf2.innerHTML += "."
+    }
+}
+
+
+$(document).ready(function(){
+     $('#telefone').mask("(99) 99999-9999");
+     $('#cpf').mask("999.999.999-99")
+     $('#cep').mask("99999-999")
+
+});
+</script>
+
+<!-- <script type="text/javascript">
+    $(document).ready(function(){
+        $("#cpf").mask("000.000.000-00")
+        $("#cnpj").mask("00.000.000/0000-00")
+        $("#telefone").mask("(00) 0000-0000")
+        $("#salario").mask("999.999.990,00", {reverse: true})
+        $("#cep").mask("00000-000")
+        $("#dataNascimento").mask("00/00/0000")
+        
+        $("#rg").mask("999.999.999-W", {
+            translation: {
+                'W': {
+                    pattern: /[X0-9]/
+                }
+            },
+            reverse: true
+        })
+        
+        var options = {
+            translation: {
+                'A': {pattern: /[A-Z]/},
+                'a': {pattern: /[a-zA-Z]/},
+                'S': {pattern: /[a-zA-Z0-9]/},
+                'L': {pattern: /[a-z]/},
+            }
+        }
+        
+        $("#placa").mask("AAA-0000", options)
+        
+        $("#codigo").mask("AA.LLL.0000", options)
+        
+        $("#celular").mask("(00) 0000-00009")
+        
+        $("#celular").blur(function(event){
+            if ($(this).val().length == 15){
+                $("#celular").mask("(00) 00000-0009")
+            }else{
+                $("#celular").mask("(00) 0000-00009")
+            }
+        })
+    })
+    </script> -->
+
+    <!-- dsadsadsadsadasdsa -->

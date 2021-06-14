@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_esqueciasenha.css">
+    <link href="https://fonts.googleapis.com/css2? family = Montserrat & display = swap" rel="folha de estilo ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>Recuperação de senha</title>
+</head>
+
+<body>
+
+
+    <div class="linha-amarela"></div>
+    <div class="showcase"></div>
+
+
+    <div class="box">
+
+
+        <h2>Encontre sua Conta </h2>
+
+
+        <h4>Insira seu email para procurar sua conta </h4>
+
+        <br>
+        <form id="form_alterarSenha" method="post" onsubmit="return enviarEmail()">
+            <div class="div-direita">
+                <input type="email" name="email" required="" id="email">
+                <label>Email</label>
+                    
+                    <button class="botão2">Enviar</button>
+        </form>
+        <div class="botão">
+            <a  href="login.html">Cancelar</a>
+        </div>
+        
+
+    </div>
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <footer>
+        <div class="footer-content">
+            <h3><span style="color: #fcc577;">Z</span>ini Company</h3>
+            <h4><i>Contat us</i></h4>
+            <br>
+            <p class="fa fa-mail-forward"><b> Email:</b><a href=""> zinicompany@bandtec.com.br</a></p>
+            <p class="fa fa-mobile-phone"><b> Phone:</b> (11) 99999-9999</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="maps">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.286232367227!2d-46.663726685355975!3d-23.5581612673585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2a5270055%3A0x3c7ea4f4c7d51fb6!2sRua%20Haddock%20Lobo%2C%20595%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001414-001!5e0!3m2!1spt-BR!2sbr!4v1614793892728!5m2!1spt-BR!2sbr"
+                    width="600" height="200" style="border-radius:60px; float: left;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2020 Zini. designed by <span>Zini Development</span></p>
+        </div>
+    </footer>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function enviarEmail() {
+        // aguardar();
+        var formulario = new URLSearchParams(new FormData(form_alterarSenha));
+        fetch("/usuarios/sendEmail", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+            
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+
+                    window.location.href = 'redefinirsenha.html';
+                });
+
+            } else {
+
+                console.log('Erro');
+                alert("Email não encontrado, insira o email cadastrado")
+                email.innerHTML = '';
+
+
+                // resposta.text().then(texto => {
+                //     console.error(texto);
+                //     // finalizar_aguardar(texto);
+                // });
+            }
+        });
+
+        return false;
+    }
+</script>

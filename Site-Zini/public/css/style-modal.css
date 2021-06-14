@@ -1,0 +1,84 @@
+.modal-faq{
+    background-color: #252525;
+    width: 700px;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 19%;
+    margin-top: -7%;
+    -webkit-box-shadow: 1px 7px 29px 8px rgba(50, 50, 50, 0.82);
+    -moz-box-shadow:    1px 7px 29px 8px rgba(50, 50, 50, 0.82);
+    box-shadow:         1px 7px 29px 8px rgba(50, 50, 50, 0.82);
+}
+
+.modal-faq h1{
+    color: white;
+    margin-left: 50px;
+    padding-top: 10px;
+    float: left;
+    font-size: 30pt;
+    text-decoration: underline #fcc577 7px ;
+}
+
+.modal-faq img{
+    width: 180px;
+    float: right;
+    margin-right: 50px;
+    padding-top: 30px;
+}
+
+.container-modal{
+    margin: 48px;
+    padding-top: 125px;
+}
+
+.accordion{
+    width: 100%;
+    padding: 0 5px;
+    border: 2px solid #fcc577;
+    cursor: pointer;
+    border-radius: 50px;
+    display: flex;
+    margin: 15px 0;
+    align-items: center;
+}
+
+.accordion .icon-modal{
+    margin: 0 10px 0 0 ;
+    width: 30px;
+    height: 30px;
+    background: url(../img/plus.png) no-repeat 3.7px 3px #fcc577;
+    border-radius: 50%;
+    float: left;
+    transition: all .5s ease-in;
+}
+
+.accordion h5{
+    font-size: 20pt;
+    margin: 0;
+    padding: 3px 0 3px 0;
+    font-weight: normal;
+    color: #fcc577;
+}
+
+.panel-modal{
+    padding: 0 15px;
+    border-left: 1px solid #fcc577;
+    margin-left: 25px;
+    font-size: 15pt;
+    text-align: justify;
+    overflow: hidden;
+    max-height: 0px;
+    transition: all .5s ease-in;
+    color: white;
+}
+
+.modal-faq .btsair{
+    float: right;
+    width: 20px;
+    margin-top: -26px;
+    margin-right: 6px;
+    cursor: pointer;
+}

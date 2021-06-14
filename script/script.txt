@@ -1,0 +1,102 @@
+#!/bin/bash
+
+PURPLE='0;35'
+NC='\033[0m'
+VERSAO=11
+clear
+echo "
+@@@  @@@  @@@  @@@@@@@@  @@@@@@@@  @@@@@@@       @@@@@@    @@@@@@    @@@@@@   @@@   @@@@@@   @@@@@@@  
+@@@  @@@  @@@  @@@@@@@@  @@@@@@@@  @@@@@@@@     @@@@@@@@  @@@@@@@   @@@@@@@   @@@  @@@@@@@   @@@@@@@  
+@@!  @@@  @@!       @@!  @@!       @@!  @@@     @@!  @@@  !@@       !@@       @@!  !@@         @@!    
+!@!  @!@  !@!      !@!   !@!       !@!  @!@     !@!  @!@  !@!       !@!       !@!  !@!         !@!    
+@!@  !@!  !!@     @!!    @!!!:!    @!@!!@!      @!@!@!@!  !!@@!!    !!@@!!    !!@  !!@@!!      @!!    
+!@!  !!!  !!!    !!!     !!!!!:    !!@!@!       !!!@!!!!   !!@!!!    !!@!!!   !!!   !!@!!!     !!!    
+:!:  !!:  !!:   !!:      !!:       !!: :!!      !!:  !!!       !:!       !:!  !!:       !:!    !!:    
+ ::!!:!   :!:  :!:       :!:       :!:  !:!     :!:  !:!      !:!       !:!   :!:      !:!     :!:    
+  ::::     ::   :: ::::   :: ::::  ::   :::     ::   :::  :::: ::   :::: ::    ::  :::: ::      ::    
+   :      :    : :: : :  : :: ::    :   : :      :   : :  :: : :    :: : :    :    :: : :       :    
+"
+echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Olá, vamos verificar se você possui o docker"
+echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Verificando..."
+
+docker --version
+if [ $? -eq 0 ]; then
+        echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Você já possui o Docker instalado!!!"
+
+else
+        echo "$(tput staf 10)[Zini]:$(tput setaf 7)  Você não possui o docker instalado, gostaria de instalar? (S/N)"
+        read inst
+        if [ \"$inst\" == \"s\" ]; then
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Instalando o Docker..."
+                sleep 2
+                sudo apt install docker.io -y
+                sleep 2
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Docker instalado!!!"
+                clear
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Iniciando o Docker..."
+                sleep 2
+                sudo systemctl start docker
+                sleep 1
+                sudo systemctl enable docker
+                clear
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Docker iniciado com sucesso!!!"
+        else
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Você optou por não instalar o Docker!!!"
+        fi
+
+fi
+
+sleep 2
+
+echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Verificando aqui se você possui o Java instalado...;"
+sleep 2
+java -version
+if [ $? -eq 0 ]; then
+        echo "$(tput setaf 10)[Zini]:$(tput setaf 7) : Java encontrado!"
+        echo "$(tput setaf 10)[Zini]:$(tput setaf 7) Deseja abrir o software zini (S/N)?"
+        read inst
+        if [ \"$inst\" == \"s\" ]; then
+                git clone https://github.com/BandTec/2ADSB-2021-1-Grupo-03
+                echo ""
+
+                cd 2ADSB-2021-1-Grupo-03/Java/projeto-zini/target
+                java -jar projeto-zini-1.0-SNAPSHOT-jar-with-dependencies.jar
+        else
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7) Obrigado pela preferencia, ate mais!! :)"
+        fi
+else
+        echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Java nao identificado, mas sem problemas, irei resolver isso agora!"
+        echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  realmente deseja instalar o Java (S/N)?"
+        read inst
+        if [ \"$inst\" == \"s\" ]; then
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Adicionando o repositório!"
+                sleep 2
+                git clone https://github.com/BandTec/2ADSB-2021-1-Grupo-03
+                clear
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Atualizando..."
+                sleep 2
+                sudo apt update -y
+                clear
+
+                if [ $VERSAO -eq 11 ]; then
+                        echo "$(tput setaf 10)[Zini]:$(tput setaf 7) instalar a versão 11 do Java. Confirme a instalação quando solicitado ;D"
+                        sudo apt install default-jre
+                        apt install openjdk-11-jre-headless
+                        -y
+                        clear
+                        echo "$(tput setaf 10)[Zini]:$(tput setaf 7) Java instalado com sucesso!"
+                        echo "$(tput setaf 10)[Zini]:$(tput setaf 7) Deseja abrir o software zini (S/N)?"
+                        read inst
+                        if [ \"$inst\" == \"s\" ]; then
+                                cd 2ADSB-2021-1-Grupo-03/Java/projeto-zini/target
+                                java -jar projeto-zini-1.0-SNAPSHOT-jar-with-dependencies.jar
+                        else
+                                echo "$(tput setaf 10)[Zini]:$(tput setaf 7) Obrigado pela preferencia, ate mais!! :)"
+                        fi
+                fi
+        else
+                echo "$(tput setaf 10)[Zini]:$(tput setaf 7)  Você optou por não instalar o Java!!!"
+        fi
+fi
+
+# ================ Zini - Grupo 3 ================

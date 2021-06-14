@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="js/modal.js"></script>
+    <link rel="stylesheet" href="css/style-config.css">
+    <link rel="stylesheet" href="css/style-modal.css">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="mask/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="mask/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="mask/js/jquery.mask.min.js"></script>	 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <script src="funcoes.js"></script>
+    <title>Zini: Dashboard-Configurações</title>
+
+</head>
+
+<body" onload="verificar_autenticacao()">
+
+    <input type="checkbox" id="check" style="display: none;">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <img style="height: 40px; margin-bottom: 7px;" src="img/icons/gear2.png" alt="">
+                <p style="font-size: 40px;">Configurações</p>
+            </div>
+        </div>
+        <div class="switch__container">
+            <input id="switch-shadow" class="switch switch--shadow" type="checkbox" onclick="ChangeTheme()" />
+            <label for="switch-shadow"></label>
+    </div>
+    </div>
+    <!-- FIM HEADER -->
+    
+    <!-- MENU FECHADO -->
+    <div class="side-menu">
+        <label class="option" for="check">
+            <img style="height: 25px;" src="img/list.png" alt="">
+        </label>
+        <a href="cards_dash.html">
+            <div class="option">
+                <img style="height: 25px;" src="img/monitor.png" alt="">
+            </div>
+        </a>
+        <div class="option">
+            <img style="height: 25px;" src="img/gear.png" alt="">
+        </div>
+        <div class="option" onclick="modalon()">
+            <img style="height: 25px;" src="img/faq.png" alt="">
+        </div>
+
+        <a href="zinih.html">
+            <div class="option">
+                <img style="height: 25px;" src="img/icon-ergonomia.png" alt="">
+            </div>
+            </a>
+
+        <div class="option" onclick="logoff()">
+            <img style="height: 25px;" src="img/logout_1.png" alt="" >
+        </div>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <!-- MENU ABERTO -->
+    <div class="side-menu_open">
+        <nav>
+            <label class="option" for="check">
+                <img style="height: 25px;" src="img/list.png" alt="">
+                <p>Menu</p>
+            </label>
+            <a class="links" href="cards_dash.html">
+                <div class="option">
+                    <img style="height: 25px;" src="img/monitor.png" alt="">
+                    <p>Computador</p>
+                </div>
+            </a>
+            <div class="option">
+                <img style="height: 25px;" src="img/gear.png" alt="">
+                <p>Opções</p>
+            </div>
+            <div class="option" onclick="modalon()">
+                <img style="height: 25px; margin-left: 15px;" src="img/faq.png" alt="">
+                <p style="margin-left: 14px;">FAQ</p>
+            </div>
+
+            <a class="links" href="zinih.html">
+                <div class="option">
+                    <img style="height: 25px;" src="img/icon-ergonomia.png" alt="">
+                    <p>WorkHealth</p>
+                </div>
+                </a>
+
+            <div class="option"  onclick="logoff()">
+                <img style="height: 30px; margin-left: 23px; " src="img/logout_1.png" alt="">
+                <p style="margin-left: 12px;">Logout</p>
+            </div>
+
+            <div>
+                <img style="height: 45px;margin-left: 28px;margin-top: 300px;" src="img/Monochrome on Transparent.png"
+                    alt="">
+            </div>
+        </nav>
+    </div>
+    <!-- <div class="dashboard-container">
+<center>
+<p style="color: white;font-size: 24pt;margin: 5px;">Configurações</p>
+</center> -->
+    <div class="container-corpo" id="corpo-site">
+        <div class="modal-faq" id="modal" style="display: none; position: absolute; z-index: 9;">
+            <h1>FAQ</h1>
+            <img src="img/img-sair.png" class="btsair" onclick="btsair()">
+            <img src="img/Original on Transparent.png">
+            <div class="container-modal">
+                    <div class="accordion" id="accordion1">
+                        <div class="icon-modal"></div>
+                        <h5>Problemas com envio de dados</h5>
+                </div>
+                <div class="panel-modal" id="panel1">
+                    <p>Caso aconteça algum problema com o envio de dados ou de visualização, entre em contato com a nossa equipe através do Email: projeto.zini@hotmail.com</p>
+                </div>
+
+                <div class="accordion" id="accordion2">
+                    <div class="icon-modal"></div>
+                    <h5> Problemas com login e cadastro</h5>
+                </div>
+                <div class="panel-modal" id="panel2">
+                    <p>Em casos de problemas na criação de usuário ou erros no preenchimento de dados ao logar você terá opções como "esqueci a senha" ou entrar em contato conosco: projeto.zini@hotmail.com</p>
+                </div>
+
+                <div class="accordion" id="accordion3">
+                    <div class="icon-modal"></div>
+                    <h5>Erro ao cadastrar novas máquinas</h5>
+                </div>
+
+                <div class="panel-modal" id="panel3">
+                    <p> Verifique se os dados e ID correspondem ao que você está enviando para o nosso banco, caso haja correção dos mesmos e erro persistir entre em contato com a nossa equipe: projeto.zini@hotmail.com </p>
+                </div>
+
+                <div class="accordion" id="accordion4">
+                    <div class="icon-modal"></div>
+                    <h5> Falha na exibição dos dados</h5>
+                </div>
+                <div class="panel-modal" id="panel4">
+                    <p> Se houver problemas na exibição tente reiniciar a aplicação em suas máquinas e volte ao painel caso permaneça o erro entre em contato com a nossa equipe: projeto.zini@hotmail.com</p>
+                </div>
+
+                <div class="accordion" id="accordion5">
+                    <div class="icon-modal"></div>
+                    <h5> Dados não compatíveis </h5>
+                </div>
+                <div class="panel-modal" id="panel5">
+                    <p> Em casos de dados que corrompam os outros dados do paínel devem ser excluidos ou alterado caso não seja possivel inserir novamente ou tirar o erro entre em contato com nossa equipe: projeto.zini@hotmail.com </p>
+                </div>
+
+                    
+            </div>   
+        </div>
+        <h1 class="h1dash" id="h1dash">Altere seus dados, &nbsp;<b id="b_usuario"></b></h1>
+        <div class="flex-box">
+            <div class="box" id="box">
+                <div class="div-foto">
+                    <center>
+                        <h2 style="margin: 0px 0px 0px 0px;"><span style="color: #fcc577;">F</span><span id="conta">oto
+                                de Perfil</span></h2>
+                        <img src="img/pessoa.jpg" class="pessoaheader"><br>
+                        <input type="submit" name="" value="Alterar">
+                    </center>
+                </div>
+
+                <form id="form_alterar" method="post">
+                    <div class="div-esquerda">
+                        <input type="text" name="nome" id="nome" autofocus="autofocus" placeholder="Ex.: João Ricardo">
+                        <label>Nome completo</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="email" name="email" id="email" placeholder="Ex.: zini@bandtec.com">
+                        <label>Email</label>
+                    </div>
+                    <div class="div-esquerda">
+                        <input type="cpf" name="cpf" id="cpf" placeholder="Ex.: 000.000.000-00">
+                        <label>CPF</label>
+                    </div>
+                    <div class="div-direita">
+                        <input type="text" name="celular" id="celular" placeholder="Ex.: (00) 00000-0000">
+                        <label>Celular</label>
+                    </div>
+                    <div class="div-esquerda">
+                        <input type="telefone" name="telefone" id="telefone" placeholder="Ex.: (00) 0000-0000">
+                        <label>Telefone</label>
+                    </div>
+                    <div class="div-direita">
+                        <span style="margin-left: 308px; margin-top: 9px; position: absolute;"
+                            class="lnr lnr-eye"></span>
+                        <input type="password" name="senha" id="senha" placeholder="Ex.: 20202020">
+
+                        <label>Senha</label>
+                    </div>
+                    
+                </form>
+            </div>
+            <button class="btn-salvar"  onclick=" alterar()"> <b> SALVAR </b></button>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('#telefone').mask("(99) 9999-9999");
+        $('#cpf').mask("999.999.999-99")
+        $('#cep').mask("99999-999")
+        $('#celular').mask("(99) 99999-9999")
+    });
+
+    let btn = document.querySelector('.lnr-eye');
+    btn.addEventListener('click', function () {
+        let input = document.querySelector('#senha');
+        if (input.getAttribute('type') == 'password') {
+            input.setAttribute('type', 'text');
+        } else {
+            input.setAttribute('type', 'password');
+        }
+    });
+</script>
+
+
+<script>
+    
+    function alterar(){
+        // aguardar();
+        var formulario = new URLSearchParams(new FormData(form_alterar));
+        fetch("/usuarios/alterar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+
+                    alert("Dados alterados com sucesso!!")
+                    window.location.href = 'cards_dash.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function ChangeTheme() {
+        var check = document.getElementById("switch-shadow");
+
+        if (check.checked) {
+            gauge2.querySelector(".side-menu").style.backgroundColor = `rotate(${value2 / 2}turn)`;
+        } else {
+
+        }
+    }
+
+
+
+    // <![CDATA[
+    var ttChatLoaderS = document.createElement('script');
+    document.tomticketChatLoaderScriptVersion = 2;
+    ttChatLoaderS.src = 'https://zini.tomticket.com/scripts-chat/chat.min.js'
+        + '?id=EP52507'
+        + '&account=3360448P03042021042116'
+        + '&autoOpen=0'
+        + '&hideWhenOffline=0'
+        + '&d=zini'
+        + '&ts=' + new Date().getTime()
+        + '&ref=' + encodeURIComponent(document.URL);
+    document.body.appendChild(ttChatLoaderS);
+    //]]>
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#cpf").mask("")
+        $("#cnpj").mask("00.000.000/0000-00")
+        $("#telefone").mask("")
+        $("#salario").mask("999.999.990,00", { reverse: true })
+        $("#cep").mask("00000-000")
+        $("#dataNascimento").mask("00/00/0000")
+
+        $("#rg").mask("999.999.999-W", {
+            translation: {
+                'W': {
+                    pattern: /[X0-9]/
+                }
+            },
+            reverse: true
+        })
+
+        var options = {
+            translation: {
+                'A': { pattern: /[A-Z]/ },
+                'a': { pattern: /[a-zA-Z]/ },
+                'S': { pattern: /[a-zA-Z0-9]/ },
+                'L': { pattern: /[a-z]/ },
+            }
+        }
+
+        $("#placa").mask("AAA-0000", options)
+
+        $("#codigo").mask("AA.LLL.0000", options)
+
+        $("#celular").mask("")
+
+        $("#celular").blur(function (event) {
+            if ($(this).val().length == 15) {
+                $("#celular").mask("")
+            } else {
+                $("#celular").mask("")
+            }
+        })
+    })
+
+    function mascara_cpf() {
+        var cpf2 = cpf.value
+        if (cpf2.lenght == 3 || cpf2.lenght == 7) {
+            cpf2.innerHTML += "."
+        } else if (cpf2.lenght == 11) {
+            cpf2.innerHTML += "."
+        }
+    }
+    //modal 
+</script>

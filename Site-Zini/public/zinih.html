@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="js/modal.js"></script>
+    <link rel="stylesheet" href="css/style-modal.css">
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="/css/zinih-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
+    <script src="funcoes.js"></script>
+
+    <title>Zini: Dashboard</title>
+</head>
+
+<body onload="graficoDisco(), gaugeDisco(), gaugeProcessador(), gaugeMemoria(), verificar_autenticacao()">
+    <input type="checkbox" id="check" style="display: none;">
+    <!-- HEADER -->
+    <!-- <div class="header">
+        <div class="container">
+            <div class="title-header">
+                Zini - WorkHealth
+            </div>
+        </div>
+   
+    </div>
+    <div class="linha"></div> -->
+    <!-- FIM HEADER -->
+    <!-- MENU FECHADO -->
+    <div class="side-menu">
+        <label class="option" for="check">
+            <img style="height: 25px;" src="img/list.png" alt="">
+        </label>
+        <a href="cards_dash.html">
+            <div class="option">
+                <img style="height: 25px;" src="img/monitor.png" alt="">
+            </div>
+        </a>
+        <a href="Configurações.html">
+            <div class="option">
+                <img style="height: 25px;" src="img/gear.png" alt="">
+            </div>
+        </a>
+
+        <div class="option" onclick="modalon()">
+            <img style="height: 25px;" src="img/faq.png" alt="">
+        </div>
+
+        <a href="zinih.html">
+            <div class="option">
+                <img style="height: 25px;" src="img/icon-ergonomia.png" alt="">
+            </div>
+        </a>
+
+        <div class="option" onclick="logoff()">
+            <img style="height: 25px;" src="img/logout_1.png" alt="">
+        </div>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <!-- MENU ABERTO -->
+    <div class="side-menu_open">
+        <nav>
+            <label class="option" for="check">
+                <img style="height: 25px;" src="img/list.png" alt="">
+                <p>Menu</p>
+            </label>
+            <a class="links" href="cards_dash.html">
+                <div class="option">
+                    <img style="height: 25px;" src="img/monitor.png" alt="">
+                    <p>Computadores</p>
+                </div>
+            </a>
+            <a class="links" href="Configurações.html">
+                <div class="option">
+                    <img style="height: 25px;" src="img/gear.png" alt="">
+                    <p>Opções</p>
+                </div>
+            </a>
+
+
+            <div class="option" onclick="modalon()">
+                <img style="height: 25px; margin-left: 15px;" src="img/faq.png" alt="">
+                <p style="margin-left: 14px;">FAQ</p>
+            </div>
+
+            <a class="links" href="zinih.html">
+                <div class="option">
+                    <img style="height: 25px;" src="img/icon-ergonomia.png" alt="">
+                    <p>WorkHealth</p>
+                </div>
+            </a>
+
+            <div class="option" onclick="logoff()">
+                <img style="height: 30px; margin-left: 23px; " src="img/logout_1.png" alt="">
+                <p style="margin-left: 12px;">Logout</p>
+            </div>
+
+            <div>
+                <img style="height: 45px;margin-left: 28px;margin-top: 250px;" src="img/Monochrome on Transparent.png" alt="">
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-corpo">
+
+        <div class="modal-faq" id="modal" style="display: none; position: absolute; z-index: 9;">
+
+            <h1>FAQ</h1>
+            <img src="img/img-sair.png" class="btsair" onclick="btsair()">
+            <img src="img/Original on Transparent.png">
+            <div class="container-modal">
+                <div class="accordion" id="accordion1">
+                    <div class="icon-modal"></div>
+                    <h5>Problemas com envio de dados</h5>
+                </div>
+                <div class="panel-modal" id="panel1">
+                    <p>Estou com problemas em enviar dados da minha máquina para a minha dashboard oque devo fazer?</p>
+                </div>
+
+                <div class="accordion" id="accordion2">
+                    <div class="icon-modal"></div>
+                    <h5> Problemas com login e cadastro</h5>
+                </div>
+                <div class="panel-modal" id="panel2">
+                    <p>Em casos de problemas na criação de usuário ou erros no preenchimento de dados ao logar você terá opções como "esqueci a senha" ou entrar em contato conosco: projeto.zini@hotmail.com</p>
+                </div>
+
+                <div class="accordion" id="accordion3">
+                    <div class="icon-modal"></div>
+                    <h5>Erro ao cadastrar novas máquinas</h5>
+                </div>
+
+                <div class="panel-modal" id="panel3">
+                    <p> Verifique se os dados e ID correspondem ao que você está enviando para o nosso banco, caso haja correção dos mesmos e erro persistir entre em contato com a nossa equipe: projeto.zini@hotmail.com </p>
+                </div>
+
+                <div class="accordion" id="accordion4">
+                    <div class="icon-modal"></div>
+                    <h5> Falha na exibição dos dados</h5>
+                </div>
+                <div class="panel-modal" id="panel4">
+                    <p> Se houver problemas na exibição tente reiniciar a aplicação em suas máquinas e volte ao painel caso permaneça o erro entre em contato com a nossa equipe: projeto.zini@hotmail.com</p>
+                </div>
+
+                <div class="accordion" id="accordion5">
+                    <div class="icon-modal"></div>
+                    <h5> Dados não compatíveis </h5>
+                </div>
+                <div class="panel-modal" id="panel5">
+                    <p> Em casos de dados que corrompam os outros dados do paínel devem ser excluidos ou alterado caso não seja possivel inserir novamente ou tirar o erro entre em contato com nossa equipe: projeto.zini@hotmail.com </p>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="showcase">
+
+            <div class="sombra">
+                <h2>Zini - WorkHealth</h2>
+                <p>Além de ser sua melhor solução, nos preocupamos <br> com sua postura no trabalho!</p>
+            </div>
+            <div class="iconnot">
+                <img src="img/logotop111.png" alt="">
+            </div>
+        </div>
+
+        <div class="partum">
+
+            <img class="img1" src="img/img-texto1.png" alt="">
+
+            <div class="conttexto">
+                <h2>Zini WorkHealth?</h2>
+                <p>Estamos aqui para oferecer o melhor para o bem estar de cada um em sua equipe, sabemos que bons resultados vem de bom habitos atinger novas fronteiras e seguir em frente de mãos dadas com sua saúde é a nossa missão!
+                </p>
+            </div>
+
+        </div>
+
+        <div class="partdois">
+            <center>
+                <h2 style="color: white;font-size: 50pt;"><span style="color: #fcc577;">"U</span>m passo para novos objetivos"</h2>
+            </center>
+
+            <div class="text-sobre">
+
+                <p>
+                    Nós, responsáveis pela Zini, oferecemos total monitoramento para a gestão em sua equipe e com isso trazer dicas benéficas relacionadas a Ergonomia, agregando também ao bem-estar do time. Fora de todos os padrões de gestão de equipes, nós buscamos e entregamos
+                    inovações a todo tempo para nossos clientes, priorizando assim a melhor experiência de usuário seja ele um empresário, coach ou gestor.
+                </p>
+            </div>
+            <iframe style="float: right; margin-top: 1%; margin-right: -50px; margin-bottom: 20px" width="600" height="345" src="https://www.youtube.com/embed/FFpOIbGjzF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+            encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        </div>
+
+        <a style="text-decoration: none;" href="index-dicas.html" class="c-preview">
+            <div class="c-preview__img"></div>
+            <h2 class="c-preview__title">algumas dicas de Ergonomia para você</h2>
+        </a>
+
+
+
+        <footer>
+            <div class="footer-content">
+                <h3><span style="color: #fcc577;">Z</span>ini Company</h3>
+                <h4><i>Contat us</i></h4>
+                <br>
+                <p class="fa fa-mail-forward"><b> Email:</b><a href=""> zinicompany@bandtec.com.br</a></p>
+                <p class="fa fa-mobile-phone"><b> Phone:</b> (11) 99999-9999</p>
+                <ul class="socials">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                </ul>
+                <div class="maps">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.286232367227!2d-46.663726685355975!3d-23.5581612673585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2a5270055%3A0x3c7ea4f4c7d51fb6!2sRua%20Haddock%20Lobo%2C%20595%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001414-001!5e0!3m2!1spt-BR!2sbr!4v1614793892728!5m2!1spt-BR!2sbr"
+                        width="600" height="200" style="border-radius:60px; float: left;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy;2020 Zini. designed by <span>Zini Development</span></p>
+            </div>
+        </footer>
+
+    </div>
+
+
+</body>
+
+</html>

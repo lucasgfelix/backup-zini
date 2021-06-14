@@ -1,0 +1,9 @@
+PARA CRIAR UM CONTEINER COM A IMAGEM JAVA
+
+ENTRE NA PASTA projet-zini e dê os dois comandos abaixo:
+
+sudo docker build -t ziniApp .
+sudo docker run ziniApp
+
+
+Criar o Conteiner do mysql utilizando o pdf da MARISE e ao inves de mysql:8.7 utilizar mysql:latest

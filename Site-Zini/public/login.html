@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-login.css">
+    <link href = "https://fonts.googleapis.com/css2? family = Montserrat & display = swap" rel = "folha de estilo ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <title>Login</title>
+</head>
+<body>
+
+
+    <div class="linha-amarela"></div>
+    <div class="container"> 
+        
+        <div class="header">
+            <a href="index.html"><img class="imgLogo" src="img/Original_on_Transparent2.png" alt="Logo"></a>
+             <a href="login.html"><img class="img-login" src="img/img-login.png"></a> 
+            <div class="nav">
+                <ul>
+                    <li class="menu-atual" class="li_menu"><a href="index.html">Pagina Inicial</a>
+                    </li>
+                    <!-- <li class="li_menu"><a href="#sobrenos">Sobre Nós</a>
+                    </li>
+                    <li class="li_menu"><a href="equipe.html">Equipe</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="showcase">
+    <div class="box">
+        <h2>Login</h2>
+     
+        <form id="form_login" method="post" onsubmit="return entrar()">
+            <div class="div-esquerda">
+                <input type="text" name="login" required="">
+                <label>Email</label>
+            </div>
+            <div class="div-direita">
+                <span style="margin-left: 420px;margin-top: 9px;position: absolute;" class="lnr lnr-eye "></span>
+                <input type="password" id="password" name="senha" required="" maxlength="20">
+
+                <label>Senha</label>
+            </div>
+    
+            <input type="submit" name="" value="Entrar">
+        </form>
+        
+        <center>
+            
+            
+            <a href="Cadastrar.html"><button> <b> Criar nova conta </b></button></a>
+            <!-- <input type= "submit" name="" href="teste.html" value="Cadastrar"> -->
+            
+        </center>
+        <span><a style="text-decoration: none; color: black; margin-left: 33%;" href="esqueciasenha.html">Esqueceu a senha?</a></span>
+    </div>
+    </div>
+</div>
+  
+</div>
+<footer>
+    <div class="footer-content">
+        <h3><span style="color: #fcc577;">Z</span>ini Company</h3>
+        <h4><i>Contat us</i></h4>
+        <br>
+        <p class="fa fa-mail-forward"><b>  Email:</b><a href="">  zinicompany@bandtec.com.br</a></p>
+        <p class="fa fa-mobile-phone"><b>  Phone:</b> (11) 99999-9999</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+        </ul>
+        <div class="maps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.286232367227!2d-46.663726685355975!3d-23.5581612673585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2a5270055%3A0x3c7ea4f4c7d51fb6!2sRua%20Haddock%20Lobo%2C%20595%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001414-001!5e0!3m2!1spt-BR!2sbr!4v1614793892728!5m2!1spt-BR!2sbr" 
+                    width="600" height="200" style="border-radius:60px; float: left;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright &copy;2020 Zini. designed by <span>Zini Development</span></p> 
+    </div>
+</footer>
+
+</div>
+
+</body>
+</html>
+
+<script>
+    let btn = document.querySelector('.lnr-eye');
+btn.addEventListener('click', function() {
+    let input = document.querySelector('#password');
+    if(input.getAttribute('type') == 'password') {
+        input.setAttribute('type', 'text');
+    } else {
+        input.setAttribute('type', 'password');
+    }
+});
+</script>
+
+
+<script>
+    // function verificar(){
+    //     var email = input_email.value;
+    //     var senha = input_senha.value;
+    //     var confsenha = input_confsenha.value;
+    //     var cpf = input_rua.value;
+    
+    //     if(senha.length < 8){
+    //         alert("A senha precisa conter 8 caracteres!");
+    //         senha.innerHTML("");
+    
+    //     }else if(senha.indexOf(confsenha) == -1){
+    //         alert("As senhas digitadas não correspondem!");
+    //         senha.innerHTML("");
+    //         confsenha.innerHTML("");
+    
+    //     }else if(cpf.length < 11){
+    //         alert("CPF invalido!");
+    
+    //     }else{
+    //         alert("cadastro realizado com sucesso!");
+    //         window.location.href = "../login.html";
+    //     }
+        
+    // };
+    function entrar(){
+        // aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.emailUsuario;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
+
+                    window.location.href = 'cards_dash.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+                alert("Usuário ou senha inválidos!!")
+                // resposta.text().then(texto => {
+                //     console.error(texto);
+                //     finalizar_aguardar(texto);
+                // });
+            }
+        });
+
+        return false;
+    }
+
+    // function aguardar() {
+    //     btn_entrar.disabled = true;
+    //     img_aguarde.style.visibility = 'visible';
+    //     div_erro.style.visibility = 'hidden';
+    // }
+
+    // function finalizar_aguardar(resposta) {
+    //     btn_entrar.disabled = false;
+    //     img_aguarde.style.visibility = 'hidden';
+    //     div_erro.style.visibility = 'visible';
+    //     div_erro.innerHTML = resposta;
+    // }
+</script>

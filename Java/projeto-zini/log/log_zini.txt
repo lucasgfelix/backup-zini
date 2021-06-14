@@ -1,0 +1,129 @@
+05/06/2021 21:22:26 usuario nao encontrado 
+
+05/06/2021 21:55:15 Login efetuado com sucesso !! 
+
+05/06/2021 22:20:09 Usuario realizou login !! 
+
+05/06/2021 22:28:47 Sistema zini está com o horário correto!! 
+
+05/06/2021 22:28:47 Usuário realizou login !! 
+
+05/06/2021 22:30:47 Sistema zini está com o horário correto!! 
+
+05/06/2021 22:30:47 Usuário realizou login !! 
+
+05/06/2021 22:32:02 Sistema zini está com o horário correto!! 
+
+05/06/2021 22:32:02 Usuário realizou login !! 
+
+05/06/2021 22:32:02 Sistema zini está exibindo mensagens corretamente!! 
+
+08/06/2021 22:17:33 Sistema zini está com o horário correto!! 
+
+08/06/2021 22:17:33 Usuário realizou login !! 
+
+08/06/2021 22:18:01 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 20:09:02 Sistema zini está com o horário correto!! 
+
+11/06/2021 20:09:02 Usuário realizou login !! 
+
+11/06/2021 20:09:03 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 20:20:52 Não foi possível coletar os dados do processador, erro gerado:
+java.lang.RuntimeException: Uncompilable source code - Erroneous sym type: com.getProcessador.getUso 
+
+11/06/2021 20:38:12 Não foi possível enviar os dados da memoria para o banco de dados, erro gerado:
+
+org.springframework.dao.TransientDataAccessResourceException: PreparedStatementCallback; SQL [insert into tbLeituras values ( ?, ?, ?)O índice 4 está fora do intervalo.; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: O índice 4 está fora do intervalo. 
+
+11/06/2021 20:44:25 Sistema zini está com o horário correto!! 
+
+11/06/2021 20:44:25 Usuário realizou login !! 
+
+11/06/2021 20:45:24 Não foi possível cadastrar os componentes novos, erro gerado: 
+
+org.springframework.dao.TransientDataAccessResourceException: PreparedStatementCallback; SQL [Insert into tbComponentes values (?,?,?,?)O índice 5 está fora do intervalo.; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: O índice 5 está fora do intervalo. 
+
+11/06/2021 20:45:24 Sistema zini está com o horário correto!! 
+
+11/06/2021 20:45:24 Usuário realizou login !! 
+
+11/06/2021 21:21:54 Sistema zini está com o horário correto!! 
+
+11/06/2021 21:21:54 Usuário realizou login !! 
+
+11/06/2021 21:22:00 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 21:23:00 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 21:24:00 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 21:25:57 Sistema zini está com o horário correto!! 
+
+11/06/2021 21:25:57 Usuário realizou login !! 
+
+11/06/2021 21:26:00 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 21:37:14 Sistema zini está com o horário correto!! 
+
+11/06/2021 21:37:14 Usuário realizou login !! 
+
+11/06/2021 21:38:49 Sistema zini está com o horário correto!! 
+
+11/06/2021 21:38:49 Usuário realizou login !! 
+
+11/06/2021 21:39:01 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 21:43:30 Sistema zini está com o horário correto!! 
+
+11/06/2021 21:43:30 Usuário realizou login !! 
+
+11/06/2021 21:44:00 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 22:22:51 Sistema zini está com o horário correto!! 
+
+11/06/2021 22:22:51 Usuário realizou login !! 
+
+11/06/2021 22:23:00 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 22:38:23 Sistema zini está com o horário correto!! 
+
+11/06/2021 22:38:23 Usuário realizou login !! 
+
+11/06/2021 22:39:02 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 22:40:20 Sistema zini está com o horário correto!! 
+
+11/06/2021 22:40:20 Usuário realizou login !! 
+
+11/06/2021 22:44:08 Sistema zini está com o horário correto!! 
+
+11/06/2021 22:44:08 Usuário realizou login !! 
+
+11/06/2021 22:44:08 Sistema zini está exibindo mensagens corretamente!! 
+
+11/06/2021 22:45:16 Sistema zini está com o horário correto!! 
+
+11/06/2021 22:45:16 Usuário realizou login !! 
+
+13/06/2021 22:10:59 Sistema zini está com o horário correto!! 
+
+13/06/2021 22:10:59 Usuário realizou login !! 
+
+13/06/2021 22:11:02 Sistema zini está exibindo mensagens corretamente!! 
+
+13/06/2021 22:46:34 Sistema zini está com o horário correto!! 
+
+13/06/2021 22:46:34 Usuário realizou login !! 
+
+13/06/2021 22:47:02 Sistema zini está exibindo mensagens corretamente!! 
+
+13/06/2021 22:57:02 Sistema zini está com o horário correto!! 
+
+13/06/2021 22:57:02 Usuário realizou login !! 
+
+13/06/2021 22:57:04 Sistema zini está exibindo mensagens corretamente!! 
+
+13/06/2021 23:01:03 Sistema zini está exibindo mensagens corretamente!! 
+

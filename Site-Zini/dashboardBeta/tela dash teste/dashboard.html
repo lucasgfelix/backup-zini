@@ -1,0 +1,792 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="style_Dashboard.css">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
+    <script src="../../public/funcoes.js"></script>
+
+    <title>Zini: Dashboard</title>
+</head>
+
+<body onload="graficoDisco(), gaugeDisco(), gaugeProcessador(), gaugeMemoria()">
+    <input type="checkbox" id="check" style="display: none;">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <img style="height: 50px;" src="img/monitorBranco.png" alt="">
+                <p>Computador: <span id="b_usuario">Lucas Felix</span></p>
+            </div>
+            <div class="search">
+                <div class="notifi-box" id="box">
+                    <h2>Notifications <span id="qntdNotificao"></span></h2>
+                    <div class="notifi-item" >
+                        <img src="img/avatar1.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Eric Viezzer</span>
+                            <p id="notificacaoTexto1"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/avatar2.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Jailson Vitor</span>
+                            <p id="notificacaoTexto2"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/avatar3.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Luan Collyns</span>
+                            <p id="notificacaoTexto3"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/avatar4.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Gabriel Curti</span>
+                            <p id="notificacaoTexto4"></p>
+                        </div>
+                    </div>
+
+                    <div class="notifi-item" >
+                        <img src="img/avatar5.png" alt="img" height="90px">
+                        <div class="text">
+                            <span class="notificacaoTitulo">Guilherme Nascimento</span>
+                            <p id="notificacaoTexto5"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="iconnot" onclick="toggleNotifi()">
+            <img src="img/bell.png" alt=""> <span id="qntdNotificao2">0</span>
+        </div>
+    </div>
+    <!-- FIM HEADER -->
+    <!-- MENU FECHADO -->
+    <div class="side-menu">
+        <label class="option" for="check">
+            <img style="height: 25px;" src="img/list.png" alt="">
+        </label>
+        <div class="option">
+            <img style="height: 25px;" src="img/monitor.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/gear.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/faq.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/relatorio.png" alt="">
+        </div>
+        <div class="option">
+            <img style="height: 25px;" src="img/logout_1.png" alt="">
+        </div>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <!-- MENU ABERTO -->
+    <div class="side-menu_open">
+        <nav>
+            <label class="option" for="check">
+                <img style="height: 25px;" src="img/list.png" alt="">
+                <p>Menu</p>
+            </label>
+            <div class="option">
+                <img style="height: 25px;" src="img/monitor.png" alt="">
+                <p>Computador</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px;" src="img/gear.png" alt="">
+                <p>Opções</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px; margin-left: 15px;" src="img/faq.png" alt="">
+                <p style="margin-left: 14px;">FAQ</p>
+            </div>
+            <div class="option">
+                <img style="height: 25px;" src="img/relatorio.png" alt="">
+                <p>Relatório</p>
+            </div>
+            <div class="option">
+                <img style="height: 30px; margin-left: 23px; " src="img/logout_1.png" alt="">
+                <p style="margin-left: 12px;">Logout</p>
+            </div>
+
+            <div>
+                <img style="height: 45px;margin-left: 28px;margin-top: 300px;" src="img/Monochrome on Transparent.png"
+                    alt="">
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-corpo">
+        <div class="flex-box">
+            <div class="graficos">
+                <div class="fundografico">
+                    <div class="grafico">
+                        <canvas id="myChart" height="110px"></canvas>
+                    </div>
+                    <div class="containerCard">
+                        <div class="cardtpUso">Tempo de uso do computador:</div><br>
+                        <div class="cardSoft">Software com maior porcentagem de uso:</div>
+                    </div>
+                </div>
+                <center>
+                    <div style="height: 1.8px;width: 800px;background: #a3adb7;"></div>
+                </center>
+                <div class="fundocards">
+
+                    <center>
+                        <div class="card">
+                            <div class="gauge">
+
+                                <div class="gauge-body">
+                                    <div class="gauge-progress1"></div>
+                                    <div class="gauge-contain1" id="gaugeContain1"></div>
+                                </div>
+                            </div>
+                            <h2>Disco Rigido</h2>
+                            <div class="textEstado">
+                                <p>Estado: <span id="valor"></span></p>
+                            </div>
+                            <div class="alertasEstado"><img src="" id="imgValor" alt="" width="15%"></div>
+                            
+                            <button onclick="graficoDisco()"> Visualizar gráfico</button>
+                        </div>
+                    </center>
+                    <div class="card">
+                        <center>
+                            <div class="gauge2">
+                                <div class="gauge2-body">
+                                    <!-- <div class="gauge-progress2"></div> -->
+                                    <div class="gauge-contain2" id="gaugeContain2">50%</div>
+                                </div>
+                            </div>
+                            <h2>Processador</h2>
+                            <div class="textEstado">
+                                <p>Estado: <span id="valor2"></span></p>
+                            </div>
+                            <div class="alertasEstado"><img src="" id="imgValor2" alt="" width="15%"></div>
+                            
+                            <button onclick="graficoProcessador()"> Visualizar gráfico </button>
+                    </div>
+                    </center>
+                    <div class="card">
+                        <center>
+                            <div class="gauge3">
+                                <div class="gauge-body">
+                                    <div class="gauge-progress3"></div>
+                                    <div class="gauge-contain3" id="gaugeContain3"></div>
+                                </div>
+                            </div>
+                            <h2>Memória</h2>
+                            <div class="textEstado">
+                                <p>Estado: <span id="valor3"></span></p>
+                            </div>
+                            <div class="alertasEstado"><img src="" id="imgValor3" alt="" width="15%"></div>
+                            <button onclick="graficoMemoria()"> Visualizar gráfico</button>
+                    </div>
+                    </center>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+verificar_autenticacao()
+        var contConteudo = 1;
+        var contNotificacao = 0;
+        var result;
+        var result2;
+        // var continuarDisco = true;
+        // var continuarMemoria = false;
+        // var continuarProcessador = false;
+        nome = usuario.innerHTML;
+        document.querySelector(".notificacaoTitulo").textContent = nome
+
+        resultados = [];
+        var dados3 = {
+            type: 'line',
+            data: {
+                labels: ['08/04', '09/04', '10/04', '11/04', '12/04'],
+                datasets: [{
+                    label: 'Disco Rígido',
+                    data: [resultados[0], resultados[1], resultados[2], resultados[3], resultados[4]],
+                    backgroundColor: [
+                        'rgba(252,197,119, 1)',
+                        'rgba(252,197,119, 1)',
+                        'rgba(252,197,119, 1)',
+                        'rgba(252,197,119, 1)',
+                        'rgba(252,197,119, 1)',
+                        'rgba(252,197,119, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(252,197,119, 0.5)',
+                        'rgba(252,197,119, 0.5)',
+                        'rgba(252,197,119, 0.5)',
+                        'rgba(252,197,119, 0.5)',
+                        'rgba(252,197,119, 0.5)',
+                        'rgba(252,197,119, 0.5)'
+                    ],
+                    borderWidth: 1
+
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        Chart.defaults.global.defaultFontColor = 'white';
+        var ctx = document.getElementById('myChart').getContext('2d');
+        window.grafico_linha = new Chart(ctx, dados3)
+        // var ctx = document.getElementById("myChart").getContext("2d");
+        // ctx.canvas.width = 2000;
+        // ctx.canvas.height = 900;
+
+        contador = 10;
+
+
+        // Gauge1
+
+        const gaugeElement = document.querySelector(".gauge");
+
+        function setGaugeValue(gauge, value) {
+
+            if (value < 0 || value > 1) {
+                return;
+            }
+
+            gauge.querySelector(".gauge-progress1").style.transform = `rotate(${value / 2}turn)`;
+            gauge.querySelector(".gauge-contain1").textContent = `${Math.round(value * 100)}%`;
+            // discoValue.innerHTML = `${Math.round(value * 100)}%`;
+            result = parseInt(`${Math.round(value * 100)}%`);
+
+
+        }
+
+        // function gaugeteste() {
+
+        //     clearInterval(intervaloProcessador)
+        //     dados3.data.datasets[0].data.shift()
+        //     dados3.data.datasets[0].data.shift()
+        //     dados3.data.datasets[0].data.shift()
+        //     dados3.data.datasets[0].data.shift()
+        //     setInterval(() => {
+
+        //         resultados.shift();
+        //         resultados.push(Math.trunc(result3));
+        //         dados3.data.datasets[0].data.push(result3)
+        //         dados3.data.datasets[0].data.shift()
+        //         window.grafico_linha.update();
+
+        //     }, 1000);
+        // }
+
+
+        function gaugeDisco() {
+
+            var gaugeTimer1 = setInterval(() => {
+
+                setGaugeValue(gaugeElement, Math.random());
+                if (result >= 75 && result < 90) {
+                    // discoValue.style.color = "yellow";
+                    valor.innerHTML = "Moderado";
+                    valor.style.color = "yellow";
+                    imgValor.src = "img/alert_risco2.gif";
+                    imgValor.style.width = "80px";
+                    gaugeContain1.style.color = "yellow";
+                    contNotificacao++;
+                    trocarCor("yellow");
+                    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Disco: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Disco: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Disco: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Disco: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Disco: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+                    
+
+
+
+                } else if (result >= 90) {
+                    // discoValue.style.color = "red";
+                    valor.innerHTML = "Crítico";
+                    valor.style.color = "red";
+                    imgValor.src = "img/alert_max.gif";
+                    imgValor.style.width = "80px";
+                    gaugeContain1.style.color = "red";
+                    contNotificacao++;
+                    trocarCor("red");
+
+                    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Disco: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Disco: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Disco: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Disco: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Disco: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+                } else {
+                    // discoValue.style.color = "#009578";
+                    valor.innerHTML = "Normal";
+                    valor.style.color = "#009578";
+                    imgValor.src = "img/ok.png";
+                    imgValor.style.width = "50px";
+                    gaugeContain1.style.color = "#009578";
+                    trocarCor("#009578");
+
+
+                }
+                // console.log(Math.trunc(result))
+                qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+            }, 3000);
+
+            function trocarCor(cor) {
+                let elements = document.getElementsByClassName('gauge-progress1');
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.backgroundColor = `${cor}`;
+                }
+            }
+        }
+
+
+
+
+        // Fim gauge1
+
+        // gauge2
+
+
+
+        const gaugeElement2 = document.querySelector(".gauge2");
+
+        function setGaugeValue2(gauge2, value2) {
+
+            if (value2 < 0 || value2 > 1) {
+                return;
+            }
+
+            // gauge2.querySelector(".gauge-progress2").style.transform = `rotate(${value2 / 2}turn)`;
+            gauge2.querySelector(".gauge-contain2").textContent = `${Math.round(value2 * 100)}%`;
+            // discoValue2.innerHTML = `${Math.round(value2 * 100)}%`;
+            result2 = parseInt(`${Math.round(value2 * 100)}%`);
+        }
+
+
+        function gaugeProcessador() {
+            var gaugeTimer2 =  setInterval(() => {
+
+               setGaugeValue2(gaugeElement2, Math.random());
+                if (result2 >= 75 && result2 < 90) {
+                    // discoValue2.style.color = "yellow";
+                    valor2.innerHTML = "Moderado";
+                    valor2.style.color = "yellow";
+                    imgValor2.src = "img/alert_risco2.gif";
+                    imgValor2.style.width = "80px";
+                    gaugeContain2.style.color = "yellow";
+                    contNotificacao++;
+                    trocarCor2("yellow");
+                    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result2}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result2}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result2}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result2}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Processador: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result2}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+                } else if (result2 >= 90) {
+                    // discoValue2.style.color = "red";
+                    valor2.innerHTML = "Crítico";
+                    valor2.style.color = "red";
+                    imgValor2.src = "img/alert_max.gif";
+                    imgValor2.style.width = "80px";
+                    gaugeContain2.style.color = "red";
+                    contNotificacao++;
+                    trocarCor2("red");
+
+                    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result2}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result2}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result2}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result2}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Processador: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result2}%</span>`
+                        contConteudo = 1;
+                    }
+
+                } else {
+                    // discoValue2.style.color = "#009578";
+                    valor2.innerHTML = "Normal";
+                    valor2.style.color = "#009578";
+                    imgValor2.src = "img/ok.png";
+                    imgValor2.style.width = "50px";
+                    gaugeContain2.style.color = "#009578";
+                    trocarCor2("#009578");
+
+
+
+                }
+
+                // if (contador != 0) {
+
+                //     var time3 = setInterval(() => {
+                //         resultados.shift();
+                //         resultados.push(Math.trunc(result));
+                //         dados3.data.datasets[0].data.push(result)
+                //         dados3.data.datasets[0].data.shift()
+
+                //         window.grafico_linha.update();
+                //         clearInterval(time3)
+                //     }, 0);
+
+                // } else {
+                //     var time4 = setInterval(() => {
+                //         resultados.shift();
+                //         resultados.push(Math.trunc(result));
+                //         dados3.data.datasets[0].data.push(result)
+                //         dados3.data.datasets[0].data.shift()
+
+                //         window.grafico_linha.update();
+                //     }, tempo);
+                // }
+
+                qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+
+            }, 1300);
+
+
+            function trocarCor2(cor2) {
+                let elements2 = document.getElementsByClassName('gauge-progress2');
+                for (var i2 = 0; i2 < elements2.length; i2++) {
+                    elements2[i2].style.backgroundColor = `${cor2}`;
+                }
+            }
+        }
+        // Fim gauge2
+
+        // gauge3
+        const gaugeElement3 = document.querySelector(".gauge3");
+
+        function setGaugeValue3(gauge3, value3) {
+
+            if (value3 < 0 || value3 > 1) {
+                return;
+            }
+
+            gauge3.querySelector(".gauge-progress3").style.transform = `rotate(${value3 / 2}turn)`;
+            gauge3.querySelector(".gauge-contain3").textContent = `${Math.round(value3 * 100)}%`;
+            // discoValue3.innerHTML = `${Math.round(value3 * 100)}%`;
+            result3 = parseInt(`${Math.round(value3 * 100)}%`);
+        }
+
+
+
+
+        function gaugeMemoria() {
+          var gaugeTimer3 = setInterval(() => {
+
+                setGaugeValue3(gaugeElement3, Math.random());
+                if (result3 >= 75 && result3 < 90) {
+                    // discoValue3.style.color = "yellow";
+                    valor3.innerHTML = "Moderado";
+                    valor3.style.color = "yellow";
+                    imgValor3.src = "img/alert_risco2.gif";
+                    imgValor3.style.width = "80px";
+                    gaugeContain3.style.color = "yellow";
+                    contNotificacao++;
+                    trocarCor3("yellow");
+                    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result3}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result3}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result3}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result3}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Memória: Situação <span style='color: yellow'>MODERADA!!</span> <br><br> Porcentagem: <span style='color: yellow'>${result3}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+
+                } else if (result3 >= 90) {
+                    // discoValue3.style.color = "red";
+                    valor3.innerHTML = "Crítico";
+                    valor3.style.color = "red";
+                    imgValor3.src = "img/alert_max.gif";
+                    imgValor3.style.width = "80px";
+                    gaugeContain3.style.color = "red";
+                    contNotificacao++;
+                    trocarCor3("red");
+                    if (contConteudo == 1) {
+                        notificacaoTexto1.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result3}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 2) {
+                        notificacaoTexto2.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result3}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 3) {
+                        notificacaoTexto3.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result3}%</span>`
+                        contConteudo++;
+                    } else if (contConteudo == 4) {
+                        notificacaoTexto4.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result3}%</span>`
+                        contConteudo++;
+                    } else {
+                        notificacaoTexto5.innerHTML = `Memória: Situação <span style='color: red'>CRÍTICA!!</span> <br><br> Porcentagem: <span style='color: red'>${result3}%</span>`
+                        contConteudo = 1;
+                    }
+
+
+                } else {
+                    // discoValue3.style.color = "#009578";
+                    valor3.innerHTML = "Normal";
+                    valor3.style.color = "#009578";
+                    imgValor3.src = "img/ok.png";
+                    imgValor3.style.width = "50px";
+                    gaugeContain3.style.color = "#009578";
+                    trocarCor3("#009578");
+
+
+                }
+
+                qntdNotificao.innerHTML = contNotificacao;
+                qntdNotificao2.innerHTML = contNotificacao;
+            }, 3000);
+
+            function trocarCor3(cor3) {
+                let elements3 = document.getElementsByClassName('gauge-progress3');
+                for (var i3 = 0; i3 < elements3.length; i3++) {
+                    elements3[i3].style.backgroundColor = `${cor3}`;
+                }
+            }
+        }
+
+
+        // function graficoMemoria() {
+
+        //     window.grafico_linha.update();
+        //     resultados.shift();
+        //     resultados.push(Math.trunc(result2));
+        //     dados3.data.datasets[0].data.push(result2)
+        //     dados3.data.datasets[0].data.shift()
+        // }
+
+        // Fim gauge3
+        cont = 1;
+
+
+        function graficoDisco() {
+            if (cont != 1) {
+                cont = 1;
+            }
+            if (cont == 1) {
+                requestAnimationFrame(() => {
+
+                    
+
+                   var time1 = setInterval(() => {
+                        if (cont == 1) {
+
+                            dados3.data.datasets[0].label = ("Disco Rígido")
+                            resultados.shift();
+                            resultados.push(Math.trunc(result));
+                            dados3.data.datasets[0].data.push(result)
+                            dados3.data.datasets[0].data.shift()
+                            window.grafico_linha.update();
+                            gaugeTimer1.resume()
+                        } else {
+                            clearInterval(time1)
+                        }
+                    }, 3000);
+
+                }, 10);
+            }
+
+        }
+
+        function graficoProcessador() {
+
+            window.grafico_linha.update();
+            if (cont != 2) {
+                cont = 2;
+            }
+            if (cont == 2) {
+                requestAnimationFrame(() => {
+                    
+                   var time2 = setInterval(() => {
+                        if (cont == 2) {
+                            dados3.data.datasets[0].label = ("Processador")
+
+                            resultados.shift();
+                            resultados.push(Math.trunc(result2));
+                            dados3.data.datasets[0].data.push(result2)
+                            dados3.data.datasets[0].data.shift()
+                            window.grafico_linha.update();
+                            gaugeTimer2.resume()
+                        } else {
+                            clearInterval(time2)
+                        }
+
+                    }, 1300);
+
+                }, 10);
+            }
+
+
+        }
+
+        function graficoMemoria() {
+            window.grafico_linha.update();
+
+            if (cont != 3) {
+                cont = 3;
+            }
+            if (cont == 3) {
+                requestAnimationFrame(() => {
+
+                    var time3 = setInterval(() => {
+
+                        if (cont == 3) {
+                            dados3.data.datasets[0].label = ("Memória")
+
+                            resultados.shift();
+                            resultados.push(Math.trunc(result3));
+                            dados3.data.datasets[0].data.push(result3)
+                            dados3.data.datasets[0].data.shift()
+                            window.grafico_linha.update();
+                            gaugeTimer1.resume()
+                        } else {
+                            clearInterval(time3)
+                            
+                        }
+
+                    }, 3000);
+
+                }, 10);
+            }
+
+
+        }
+
+
+        // do {
+
+
+        // } while (cont == 1);
+        // do {
+
+        //     resultados.shift();
+        //             resultados.push(Math.trunc(result2));
+        //             dados3.data.datasets[0].data.push(result2)
+        //             dados3.data.datasets[0].data.shift()
+
+        //             window.grafico_linha.update();
+        // } while (cont == 2);
+
+        var down = false;
+        function toggleNotifi() {
+            var box = document.getElementById('box');
+            if (down) {
+                box.style.height = '0px';
+                box.style.opacity = 0;
+                box.style.visibility = "hidden";
+                down = false;
+                contNotificacao = 0;
+            } else {
+                box.style.height = 'auto';
+                box.style.opacity = 1;
+                box.style.visibility = "visible";
+                down = true;
+                
+            }
+        }
+
+        // <![CDATA[
+        var ttChatLoaderS = document.createElement('script');
+        document.tomticketChatLoaderScriptVersion = 2;
+        ttChatLoaderS.src = 'https://zini.tomticket.com/scripts-chat/chat.min.js'
+            + '?id=EP52507'
+            + '&account=3360448P03042021042116'
+            + '&autoOpen=0'
+            + '&hideWhenOffline=0'
+            + '&d=zini'
+            + '&ts=' + new Date().getTime()
+            + '&ref=' + encodeURIComponent(document.URL);
+        document.body.appendChild(ttChatLoaderS);
+    //]]>
+    </script>
+
+    <!-- <script type="text/javascript">
+
+    </script> -->
+
+
+</body>
+
+</html>

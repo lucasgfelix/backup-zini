@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Style_Novasenha.css">
+    <link rel="stylesheet" href="funcoes.js">
+    <link href="https://fonts.googleapis.com/css2? family = Montserrat & display = swap" rel="folha de estilo ">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <title>Recuperação de senha</title>
+</head>
+
+<body>
+
+
+    <div class="linha-amarela"></div>
+    <div class="showcase"></div>
+
+
+    <div class="box">
+
+
+        <h2>Insira sua nova senha</h2>
+
+
+        <br>
+        <form id="form_senha" method="post" onsubmit="return alterarSenha()">
+            <div class="div-esquerda">
+                <span style="margin-left: 520px;margin-top: 9px;float: right;position: absolute;"
+                    class="lnr lnr-eye"></span>
+                <input type="password" name="senha" required id="password">
+                <label>Senha</label>
+            </div>
+            <div class="div-direita">
+                <span style="margin-left: 520px;margin-top: 9px;float: right;position: absolute;" class="lnr lnr-eye"
+                    id="olho2"></span>
+                <input type="password" name="senha2" required id="password2">
+                <label>Confimar Senha</label>
+
+                <button class="botão2">Redefinir </button>
+        </form>
+        <div class="botão">
+            <a href="login.html">Cancelar</a>
+        </div>
+
+    </div>
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <footer>
+        <div class="footer-content">
+            <h3><span style="color: #fcc577;">Z</span>ini Company</h3>
+            <h4><i>Contat us</i></h4>
+            <br>
+            <p class="fa fa-mail-forward"><b> Email:</b><a href=""> zinicompany@bandtec.com.br</a></p>
+            <p class="fa fa-mobile-phone"><b> Phone:</b> (11) 99999-9999</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="maps">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.286232367227!2d-46.663726685355975!3d-23.5581612673585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2a5270055%3A0x3c7ea4f4c7d51fb6!2sRua%20Haddock%20Lobo%2C%20595%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001414-001!5e0!3m2!1spt-BR!2sbr!4v1614793892728!5m2!1spt-BR!2sbr"
+                    width="600" height="200" style="border-radius:60px; float: left;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2020 Zini. designed by <span>Zini Development</span></p>
+        </div>
+    </footer>
+
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+
+    let btn = document.querySelector('.lnr-eye');
+    btn.addEventListener('click', function () {
+        let input = document.querySelector('#password');
+        if (input.getAttribute('type') == 'password') {
+            input.setAttribute('type', 'text');
+        } else {
+            input.setAttribute('type', 'password');
+        }
+    });
+
+
+
+
+    let btn2 = document.querySelector('#olho2');
+    btn2.addEventListener('click', function () {
+        let input2 = document.querySelector('#password2');
+        if (input2.getAttribute('type') == 'password') {
+            input2.setAttribute('type', 'text');
+        } else {
+            input2.setAttribute('type', 'password');
+        }
+    });
+</script>
+
+
+
+
+<script>
+
+    function alterarSenha() {
+
+        var codigo = sessionStorage.nome_usuario_meuapp
+        var senhaUsu = password.value;
+        var confSenhaUsu = password2.value;
+
+        var formulario = new URLSearchParams(new FormData(form_senha));
+        fetch(`/usuarios/alterarSenha/${codigo}`, {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+
+                    alert("Sua senha foi alterada com sucesso!!!")
+                    window.location.href = 'login.html';
+
+            } else {
+
+                if (senhaUsu != confSenhaUsu) {
+                    alert("Suas senhas não coincidem!!")
+                } else if (senhaUsu.length < 8) {
+                    alert("Sua senha tem que ser superior a 8 digitos")
+                } else {
+                    console.log('Erro');
+                    alert("Não foi possível alterar sua senha, tente novamente!")
+                }
+
+
+
+                // resposta.text().then(texto => {
+                //     console.error(texto);
+                //     // finalizar_aguardar(texto);
+                // });
+            }
+        });
+
+        return false;
+    }
+    // aguardar();
+
+</script>

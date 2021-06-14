@@ -1,0 +1,92 @@
+<<<<<<< HEAD
+create database bdzini_eric;
+=======
+create database bd_zini;
+
+use bd_zini;
+
+
+
+
+
+>>>>>>> faffbaa784179b48cfdd0947ddb28cf59c78fcf7
+
+use bdzini_eric;
+
+create table tbEquipe(
+
+idEquipe int primary key identity,
+nomeEquipe varchar(60),
+dataFundacao varchar(60),
+segmentoEquipe varchar(60),
+descricaoEquipe varchar(60)
+);
+
+create table tbUsuario (
+
+idUsuario int primary key identity,
+nomeUsuario varchar(60),
+emailUsuario varchar(60),
+cpfUsuario varchar(60),
+celularUsuario varchar(60),
+cep varchar(60),
+rua varchar(60),
+bairro varchar(60),
+cidade varchar(60),
+senha varchar(60),
+codigoRecuperarSenha varchar(60),
+fkEquipe int,
+foreign key (fkEquipe) references tbEquipe (idEquipe)
+);
+
+
+
+
+create table tbRotina (
+
+idRotina int primary key identity,
+diasUteisRotina varchar(60),
+tempoDePausa int,
+fkUsuario int,
+foreign key (fkUsuario) references tbUsuario (idUsuario)
+
+);
+
+create table tbComputador(
+
+idComputador int primary key identity,
+nomeComputador varchar(60),
+fabricanteSO varchar(60),
+tipoSistemaOperacional varchar(60),
+ultimaVerificacaoComponentes varchar(60),
+processador varchar(60),
+fkEquipe int,
+fkUsuario int,
+foreign key (fkEquipe) references tbEquipe (idEquipe),
+foreign key (fkUsuario) references tbUsuario (idUsuario)
+);
+
+
+create table tbComponentes(
+
+idComponente int primary key identity,
+nomeComponente varchar(60),
+tipoComponente varchar(60),
+minTempComponente int,
+maxTempComponente int,
+fkComputador int,
+foreign key (fkComputador) references tbComputador (idComputador)
+
+);
+
+
+create table tbLeituras(
+
+idLeitura int primary key identity,
+dataLeitura varchar(60),
+fkComputador int,
+fkComponentes int,
+usoPorcentagemAtual Decimal(4,2),
+foreign key (fkComputador) references tbComputador (idComputador),
+foreign key (fkComponentes) references tbComputador (idComponente),
+);
