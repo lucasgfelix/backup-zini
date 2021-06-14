@@ -1,10 +1,9 @@
 {
-    "name": "zini-backup-Raiz",
+    "name": "backup-zini",
     "version": "0.0.1",
     "private": true,
     "scripts": {
-    "start": "node /Site-Zini/bin/www",
-    "postinstall": "cd Site-Zini && npm install && npm i nodemailer --save"
+        "start": "node Site-Zini/bin/www",
+        "postinstall": "cd Site-Zini && npm install && npm i nodemailer --save"
     }
-    }
-    
+}
